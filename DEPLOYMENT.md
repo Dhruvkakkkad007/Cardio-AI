@@ -100,6 +100,7 @@ Fill in the deployment fields:
 - **Build command**: `npm run build`
 - **Publish directory**: `frontend/dist` (or `dist` if base directory is set to `frontend`)
 
+
 ### Step 4: Set Environment Variable (Backend Connection)
 1. Click **Environment Variables** -> **Add a variable** (or Site Configuration -> Environment Variables).
 2. Set the following key and value:
