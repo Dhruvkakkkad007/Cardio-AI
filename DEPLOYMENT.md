@@ -76,8 +76,43 @@ If you navigate directly to subpages, add a rewrite rule under **Redirects/Rewri
 
 ---
 
+## 🌐 Option 3: Deploying Frontend to Netlify
+
+You can also host your React Frontend on **Netlify** while keeping your FastAPI Backend running on Render.
+
+### Step 1: Push Code to GitHub
+Ensure `frontend/public/_redirects` and `frontend/netlify.toml` are committed to your GitHub repo:
+```bash
+git add .
+git commit -m "Add Netlify configuration"
+git push origin main
+```
+
+### Step 2: Connect GitHub Repository to Netlify
+1. Log in to [Netlify App](https://app.netlify.com).
+2. Click **Add new site** -> **Import an existing project**.
+3. Select **GitHub** and authorize Netlify.
+4. Select your **`Cardio AI`** repository.
+
+### Step 3: Configure Netlify Build Settings
+Fill in the deployment fields:
+- **Base directory**: `frontend`
+- **Build command**: `npm run build`
+- **Publish directory**: `frontend/dist` (or `dist` if base directory is set to `frontend`)
+
+### Step 4: Set Environment Variable (Backend Connection)
+1. Click **Environment Variables** -> **Add a variable** (or Site Configuration -> Environment Variables).
+2. Set the following key and value:
+   - **Key**: `VITE_API_URL`
+   - **Value**: `https://cardio-ai-backend.onrender.com` *(Your FastAPI backend URL on Render)*
+3. Click **Deploy cardio-ai-frontend** (or **Deploy site**).
+
+Netlify will build your Vite app and give you a live URL (e.g. `https://cardio-ai-studio.netlify.app`)!
+
+---
+
 ## 🎉 Verification
 
-1. Open your frontend Render URL (e.g. `https://cardio-ai-frontend.onrender.com`).
+1. Open your frontend Netlify URL (e.g. `https://cardio-ai-studio.netlify.app`).
 2. Verify that the header shows **`FastAPI Connected`** with a green glowing indicator!
 3. Select a preset or adjust biometrics and click **"Predict Cardiovascular Risk"** to test live cloud predictions.
